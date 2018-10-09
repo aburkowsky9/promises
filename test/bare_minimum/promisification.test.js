@@ -64,7 +64,6 @@ describe('Promisification', function() {
       // Must return a Bluebird promise. ES6 promise won't work here
       expect(generateRandomTokenAsync()).to.be.an.instanceOf(Promise);
     });
-
     it('should make a random token available in the `then` block', function(done) {
       generateRandomTokenAsync()
         .then(function(token) {
@@ -76,6 +75,8 @@ describe('Promisification', function() {
     });
 
   });
+  
+
 
   describe('readFileAndMakeItFunnyAsync', function() {
     var readFileAndMakeItFunnyAsync = promisificaion.readFileAndMakeItFunnyAsync;

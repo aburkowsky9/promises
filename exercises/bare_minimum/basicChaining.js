@@ -10,10 +10,13 @@
 
 var fs = require('fs');
 var Promise = require('bluebird');
+// var createProfile = require('./promisification.js');
+
 
 
 
 var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
+  
   // TODO
 };
 
