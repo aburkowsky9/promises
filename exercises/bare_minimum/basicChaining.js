@@ -10,13 +10,29 @@
 
 var fs = require('fs');
 var Promise = require('bluebird');
-// var createProfile = require('./promisification.js');
-
+var gitHubRequest = require('./promisification.js');
+var getProfileUsername = require('./promiseConstructor.js');
+Promise.promisifyAll(fs);
 
 
 
 var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
-  
+  return getProfileUsername.pluckFirstLineFromFileAsync(readFilePath)
+    .then((username)=>{
+      if (!username) {
+        throw new Error('Username not found!');
+      } else {
+        return gitHubRequest.getGitHubProfileAsync(username);
+      }
+    })
+    .then((reqBody)=>{
+      if (!reqBody) {
+        throw new Error('No request body!');
+      } else {
+        reqBody = JSON.stringify(reqBody);
+        return fs.writeFileAsync(writeFilePath, reqBody, 'utf8');
+      }
+    });
   // TODO
 };
 
