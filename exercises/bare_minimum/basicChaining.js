@@ -30,7 +30,7 @@ var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
         throw new Error('No request body!');
       } else {
         reqBody = JSON.stringify(reqBody);
-        return fs.writeFileAsync(writeFilePath, reqBody, 'utf8');
+        return fs.writeFileAsync(writeFilePath, reqBody);
       }
     });
   // TODO
